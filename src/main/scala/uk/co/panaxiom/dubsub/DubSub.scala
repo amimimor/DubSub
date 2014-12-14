@@ -122,7 +122,10 @@ class DubSub(
     }
     case e: MemberEvent => //
     case Terminated(ref) => terminated(ref)
-    case _ => log.error("Received unknown message")
+    case x: Any => {
+      println(x)
+      log.error("Received unknown message")
+    }
   }
 
   private def subscribe(channel: String): Unit = {
